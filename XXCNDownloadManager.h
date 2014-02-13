@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "XXCNFileDownloader.h"
 
-@interface XXCNDownloadManager : NSObject
+@interface XXCNDownloadManager : NSObject<XXCNFileDownloaderDelegate>
 
 + (instancetype)sharedDownloadManager;
 
@@ -17,6 +17,8 @@
 
 -(XXCNFileDownloader *)downloadURLStr:(NSString *)urlStr withTag:(NSString *)tag withDelegate:(id<XXCNFileDownloaderDelegate>)delegate;
 
+-(void)stopDownloadOperationWithTag:(NSString *)tag;
 
+-(void)removeDownloadOperationWithTag:(NSString *)tag;
 
 @end

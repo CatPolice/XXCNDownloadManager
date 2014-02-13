@@ -32,21 +32,21 @@
     
     
     
-    [[XXCNDownloadManager sharedDownloadManager] downloadURLStr:@"http://10.129.32.30/mp3s/1.mp3" withTag:@"1" withDelegate:self];
+    [[XXCNDownloadManager sharedDownloadManager] downloadURLStr:@"1.mp3" withTag:@"1" withDelegate:self];
     
-    [[XXCNDownloadManager sharedDownloadManager] downloadURLStr:@"http://10.129.32.30/mp3s/2.mp3" withTag:@"2" withDelegate:self];
+    [[XXCNDownloadManager sharedDownloadManager] downloadURLStr:@"2.mp3" withTag:@"2" withDelegate:self];
     
-    [[XXCNDownloadManager sharedDownloadManager] downloadURLStr:@"http://10.129.32.30/mp3s/3.mp3" withTag:@"3" withDelegate:self];
+    [[XXCNDownloadManager sharedDownloadManager] downloadURLStr:@"3.mp3" withTag:@"3" withDelegate:self];
     
-    [[XXCNDownloadManager sharedDownloadManager] downloadURLStr:@"http://10.129.32.30/mp3s/88.mp3" withTag:@"4" withDelegate:self];
+    [[XXCNDownloadManager sharedDownloadManager] downloadURLStr:@"88.mp3" withTag:@"4" withDelegate:self];
     
-    [[XXCNDownloadManager sharedDownloadManager] downloadURLStr:@"http://10.129.32.30/mp3s/4.mp3" withTag:@"5" withDelegate:self];
+    [[XXCNDownloadManager sharedDownloadManager] downloadURLStr:@"4.mp3" withTag:@"5" withDelegate:self];
     
-    [[XXCNDownloadManager sharedDownloadManager] downloadURLStr:@"http://10.129.32.30/mp3s/5.mp3" withTag:@"6" withDelegate:self];
+    [[XXCNDownloadManager sharedDownloadManager] downloadURLStr:@"5.mp3" withTag:@"6" withDelegate:self];
     
-    [[XXCNDownloadManager sharedDownloadManager] downloadURLStr:@"http://10.129.32.30/mp3s/6.mp3" withTag:@"7" withDelegate:self];
+    [[XXCNDownloadManager sharedDownloadManager] downloadURLStr:@"6.mp3" withTag:@"7" withDelegate:self];
     
-    [[XXCNDownloadManager sharedDownloadManager] downloadURLStr:@"http://10.129.32.30/mp3s/7.mp3" withTag:@"8" withDelegate:self];
+    [[XXCNDownloadManager sharedDownloadManager] downloadURLStr:@"7.mp3" withTag:@"8" withDelegate:self];
     
 }
 
@@ -61,6 +61,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
 }
+
+
+
 
 @end

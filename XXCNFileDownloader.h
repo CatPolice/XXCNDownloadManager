@@ -24,6 +24,7 @@
 //开始下载
 -(void)startDownload;
 
+-(void)cancelOperation;
 
 @end
 
@@ -40,5 +41,9 @@
 
 //下载成功的委托
 -(void)XXCNFileDownloaderLoadComplete:(XXCNFileDownloader *)fileDownloader;
+
+//暂停的下载任务委托
+-(void)XXCNFileDownloaderPaused:(XXCNFileDownloader *)fileDownloader;
+
 
 @end

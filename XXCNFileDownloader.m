@@ -21,15 +21,22 @@ const NSTimeInterval kDefaultTimeoutInterval=30.0;
     //当前已经下载的数据的大小
     uint64_t _receivedDataLength;
     
+    BOOL _operationStarted;
     
     BOOL finished;
     BOOL executing;
+    BOOL cancelled;
 }
 
 -(id)initWidthURLStr:(NSString *)urlstr
 {
     self=[super init];
     if (self) {
+        
+        finished=NO;
+        executing=NO;
+        cancelled=NO;
+        
         _urlStr=urlstr;
         
         _expectedDataLength=0;
@@ -69,6 +76,9 @@ const NSTimeInterval kDefaultTimeoutInterval=30.0;
             [self willChangeValueForKey:@"isExecuting"];
             executing = YES;
             [_connection start];
+            
+            _operationStarted=YES;
+            
             [self didChangeValueForKey:@"isExecuting"];
             
         }
@@ -119,31 +129,76 @@ const NSTimeInterval kDefaultTimeoutInterval=30.0;
 
 -(void)finishOperation
 {
+    if (!_operationStarted) {
+        return;
+    }
+    
     [self willChangeValueForKey:@"isExecuting"];
     [self willChangeValueForKey:@"isFinished"];
     [_connection cancel];
     _connection=nil;
     finished = YES;
     executing = NO;
-    [self didChangeValueForKey:@"isFinished"];
     [self didChangeValueForKey:@"isExecuting"];
+    [self didChangeValueForKey:@"isFinished"];
+    
     
     
 }
 
+//取消线程任务(对已经完成的线程任务无效)
+-(void)cancelOperation
+{
+    [self pauseOperation];
+}
+-(void)pauseOperation
+{
+    
+    if ([self isFinished]) {
+        return;
+    }
+    
+    if (!_operationStarted) {
+        [self willChangeValueForKey:@"isCancelled"];
+        
+        [_connection cancel];
+        _connection=nil;
+        cancelled=YES;
+        [self didChangeValueForKey:@"isCancelled"];
+    }else
+    {
+        [self finishOperation];
+    }
+    if (self.delegate!=nil && [self.delegate respondsToSelector:@selector(XXCNFileDownloaderPaused:)]) {
+        [self.delegate XXCNFileDownloaderPaused:self];
+    }
+    
+}
 
+#pragma mark --override NSOPeration
+
+//是否并发操作
 -(BOOL)isConcurrent
 {
     return YES;
 }
+//线程是否操释放掉,不重写这个方法，线程内存无法释放
 - (BOOL) isFinished{
     
     return finished;
 }
+
+//线程是否还在执行操作
 - (BOOL) isExecuting{
     
     return executing;
 }
 
+
+//线程是否被取消，不重写这个方法，线程操作无法被取消
+-(BOOL)isCancelled
+{
+    return cancelled;
+}
 
 @end

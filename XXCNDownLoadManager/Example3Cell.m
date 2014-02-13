@@ -20,7 +20,7 @@
     if (self) {
         // Initialization code
         
-        _titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
+        _titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(5, 3, 90, 50)];
         
         _titleLabel.text=@"";
         
@@ -28,17 +28,15 @@
         
         _loadProgressView=[[UIProgressView alloc]initWithProgressViewStyle:UIProgressViewStyleDefault];
         
-        _loadProgressView.frame=CGRectMake(80, 25, 100, 50);
+        _loadProgressView.frame=CGRectMake(100, 25, 100, 50);
         
         [self addSubview:_loadProgressView];
         
-        _progressLabel=[[UILabel alloc]initWithFrame:CGRectMake(200, 0, 80, 50)];
+        _progressLabel=[[UILabel alloc]initWithFrame:CGRectMake(250, 0, 80, 50)];
         
         _progressLabel.text=@"等待中";
         
         [self addSubview:_progressLabel];
-        
-         _downloading=NO;
         
         
         self.backgroundColor=[UIColor colorWithRed:0.1 green:0.7 blue:0.2 alpha:0.3];
@@ -48,16 +46,35 @@
 }
 
 
--(void)setDownloadProgress:(float)progress
+
+
+-(void)setDownloadProgress:(float)progress WithStatus:(Example3CelldownloadStatus)downloadStatus
 {
-    if (progress==1) {
+    _downloadStatus=downloadStatus;
+    if (_downloadStatus==Example3CelldownloadStatusPause) {
+        _progressLabel.text=@"下载暂停";
+    }
+    else if(_downloadStatus==Example3CelldownloadStatusWaiting)
+    {
+        _progressLabel.text=@"等待中";
+    }
+    else if(_downloadStatus==Example3CelldownloadStatusError)
+    {
+        _progressLabel.text=@"下载失败";
+    }
+    else if(_downloadStatus==Example3CelldownloadStatusComplete)
+    {
         _progressLabel.text=@"下载完成";
-    }else
+    }
+    else if(_downloadStatus==Example3CelldownloadStatusLoading)
     {
         _progressLabel.text=[@"" stringByAppendingFormat:@"%.2f%@",progress,@"%"];
     }
+    
+    
     _loadProgressView.progress=progress/100;
 }
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {

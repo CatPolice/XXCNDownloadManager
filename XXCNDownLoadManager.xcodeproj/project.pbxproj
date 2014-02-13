@@ -22,6 +22,7 @@
 		E3AA450B18AB469900C08965 /* XXCNFileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AA450A18AB469900C08965 /* XXCNFileDownloader.m */; };
 		E3AA450F18AB4D2B00C08965 /* Example1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AA450E18AB4D2B00C08965 /* Example1ViewController.m */; };
 		E3AA451218AB592900C08965 /* XXCNDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AA451118AB592800C08965 /* XXCNDownloadManager.m */; };
+		E3CB83EB18AC81D4002078F8 /* DownloadProgressTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CB83EA18AC81D4002078F8 /* DownloadProgressTableDataSource.m */; };
 		E3DF937F18AB656100ED08FC /* Example2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DF937E18AB656100ED08FC /* Example2ViewController.m */; };
 		E3DF938218AB6C8000ED08FC /* Example3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DF938118AB6C8000ED08FC /* Example3ViewController.m */; };
 		E3DF938618AB6D9A00ED08FC /* Example3Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DF938518AB6D9A00ED08FC /* Example3Cell.m */; };
@@ -60,6 +61,8 @@
 		E3AA450E18AB4D2B00C08965 /* Example1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Example1ViewController.m; sourceTree = "<group>"; };
 		E3AA451018AB592800C08965 /* XXCNDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXCNDownloadManager.h; sourceTree = "<group>"; };
 		E3AA451118AB592800C08965 /* XXCNDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXCNDownloadManager.m; sourceTree = "<group>"; };
+		E3CB83E918AC81D4002078F8 /* DownloadProgressTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadProgressTableDataSource.h; sourceTree = "<group>"; };
+		E3CB83EA18AC81D4002078F8 /* DownloadProgressTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadProgressTableDataSource.m; sourceTree = "<group>"; };
 		E3DF937D18AB656100ED08FC /* Example2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Example2ViewController.h; sourceTree = "<group>"; };
 		E3DF937E18AB656100ED08FC /* Example2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Example2ViewController.m; sourceTree = "<group>"; };
 		E3DF938018AB6C8000ED08FC /* Example3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Example3ViewController.h; sourceTree = "<group>"; };
@@ -176,6 +179,8 @@
 			children = (
 				E3DF938018AB6C8000ED08FC /* Example3ViewController.h */,
 				E3DF938118AB6C8000ED08FC /* Example3ViewController.m */,
+				E3CB83E918AC81D4002078F8 /* DownloadProgressTableDataSource.h */,
+				E3CB83EA18AC81D4002078F8 /* DownloadProgressTableDataSource.m */,
 				E3DF938418AB6D9A00ED08FC /* Example3Cell.h */,
 				E3DF938518AB6D9A00ED08FC /* Example3Cell.m */,
 			);
@@ -281,6 +286,7 @@
 			files = (
 				E3DF938618AB6D9A00ED08FC /* Example3Cell.m in Sources */,
 				E3AA44E718AB450700C08965 /* main.m in Sources */,
+				E3CB83EB18AC81D4002078F8 /* DownloadProgressTableDataSource.m in Sources */,
 				E3AA44EB18AB450700C08965 /* SogouWallpaperAppDelegate.m in Sources */,
 				E3AA450B18AB469900C08965 /* XXCNFileDownloader.m in Sources */,
 				E3AA450F18AB4D2B00C08965 /* Example1ViewController.m in Sources */,

@@ -8,14 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+
+typedef enum{
+    Example3CelldownloadStatusWaiting,
+    Example3CelldownloadStatusPause,
+    Example3CelldownloadStatusLoading,
+    Example3CelldownloadStatusComplete,
+    Example3CelldownloadStatusError
+}Example3CelldownloadStatus;
+
 @interface Example3Cell : UITableViewCell
 
 @property(nonatomic,strong)UILabel *titleLabel;
+@property(nonatomic,assign)Example3CelldownloadStatus downloadStatus;
 
-
-@property(nonatomic)BOOL downloading;
-
-
--(void)setDownloadProgress:(float)progress;
+-(void)setDownloadProgress:(float)progress WithStatus:(Example3CelldownloadStatus)downloadStatus;
 
 @end

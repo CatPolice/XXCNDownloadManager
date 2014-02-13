@@ -12,6 +12,7 @@
 @implementation XXCNDownloadManager
 {
     NSOperationQueue *_downloadQueue;
+    NSMutableDictionary *_operationDictionary;
 }
 
 - (id)init
@@ -20,7 +21,9 @@
     
     if (self) {
         _downloadQueue = [[NSOperationQueue alloc] init];
-        [_downloadQueue setMaxConcurrentOperationCount:3];
+        [_downloadQueue setMaxConcurrentOperationCount:2];
+        
+        _operationDictionary=[[NSMutableDictionary alloc]init];
     }
     return self;
 }
@@ -47,10 +50,34 @@
     fileDownloader.delegate=delegate;
     fileDownloader.tag=tag;
     
+    [_operationDictionary setObject:fileDownloader forKey:tag];
+    
     [_downloadQueue addOperation:fileDownloader];
     
     return fileDownloader;
     
+}
+
+
+//停止某一个正在执行的下载进程
+-(void)stopDownloadOperationWithTag:(NSString *)tag
+{
+    XXCNFileDownloader *fileDownloader=(XXCNFileDownloader *)[_operationDictionary objectForKey:tag];
+    
+    [fileDownloader cancelOperation];
+   
+}
+
+//删除某个已经正确下载完毕的进程
+-(void)removeDownloadOperationWithTag:(NSString *)tag
+{
+    [_operationDictionary removeObjectForKey:tag];
+    
+    NSLog(@"未完成的下载任务数:%lu",(unsigned long)[_operationDictionary count]);
+    
+    int taskNum=(int)[_downloadQueue operationCount]-1;
+    
+    NSLog(@"列队中的下载任务数1:%i",taskNum);
 }
 
 @end

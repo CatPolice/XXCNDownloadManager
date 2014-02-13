@@ -11,4 +11,4 @@ XXCNDownloadManager
 
 
 
-<img scr="https://github.com/xiaoxiaocainiao/XXCNDownloadManager/blob/master/preview/1.png"/>
+ ![](https://github.com/xiaoxiaocainiao/XXCNDownloadManager/blob/master/preview/1.png)

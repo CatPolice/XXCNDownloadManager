@@ -14,7 +14,13 @@
 //XXCNFileDownloader类
 @interface XXCNFileDownloader : NSOperation<NSURLConnectionDelegate>
 
+//下载进程的标示符
 @property(nonatomic,strong)NSString *tag;
+
+//本次应该下载的数据的大小
+@property(nonatomic,assign)uint64_t expectedDataLength;
+//当前已经下载的数据的大小
+@property(nonatomic,assign)uint64_t receivedDataLength;
 
 @property(nonatomic,weak)id<XXCNFileDownloaderDelegate> delegate;
 

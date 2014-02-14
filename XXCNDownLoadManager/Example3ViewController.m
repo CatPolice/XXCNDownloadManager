@@ -134,6 +134,8 @@ static NSString *CellIdentifier = @"Cell";
     [self.tableView registerClass:[Example3Cell class] forCellReuseIdentifier:CellIdentifier];
     
     
+    
+    //把所有需要下载的内容加入道operationQueue
     for (int i=0; i<[_urlStrArray count]; i++) {
         NSString *tempTag=[NSString stringWithFormat:@"%i",i];
         [[XXCNDownloadManager sharedDownloadManager] downloadURLStr:_urlStrArray[i] withTag:tempTag withDelegate:self];
@@ -206,7 +208,6 @@ static NSString *CellIdentifier = @"Cell";
 
 -(void)XXCNFileDownloaderLoadComplete:(XXCNFileDownloader *)fileDownloader
 {
-    NSLog(@"xxxxxxxx:%i",Example3CelldownloadStatusComplete);
     [self setCellWithTag:[fileDownloader.tag intValue] WithStatus:Example3CelldownloadStatusComplete];
     
     [[XXCNDownloadManager sharedDownloadManager]removeDownloadOperationWithTag:fileDownloader.tag];
@@ -223,8 +224,27 @@ static NSString *CellIdentifier = @"Cell";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *tempTag=[@"" stringByAppendingFormat:@"%li",(long)indexPath.row];
-    [[XXCNDownloadManager sharedDownloadManager]stopDownloadOperationWithTag:tempTag];
+    
+    if ([[_dpTableDS.statusArray objectAtIndex:indexPath.row] intValue] == Example3CelldownloadStatusLoading || [[_dpTableDS.statusArray objectAtIndex:indexPath.row] intValue]==Example3CelldownloadStatusWaiting) {
+        
+        NSString *tempTag=[@"" stringByAppendingFormat:@"%li",(long)indexPath.row];
+        [[XXCNDownloadManager sharedDownloadManager]stopDownloadOperationWithTag:tempTag];
+        
+    }else if([[_dpTableDS.statusArray objectAtIndex:indexPath.row] intValue] == Example3CelldownloadStatusPause || [[_dpTableDS.statusArray objectAtIndex:indexPath.row] intValue] == Example3CelldownloadStatusError)
+    {
+        NSString *tempTag=[NSString stringWithFormat:@"%ld",(long)indexPath.row];
+        [[XXCNDownloadManager sharedDownloadManager] downloadURLStr:_urlStrArray[indexPath.row] withTag:tempTag withDelegate:self];
+        
+        
+        [_dpTableDS.statusArray replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithInt:Example3CelldownloadStatusWaiting]];
+        Example3Cell *cell=(Example3Cell *)[tableView cellForRowAtIndexPath:indexPath];
+        float progress= [[_dpTableDS.progressArray objectAtIndex:indexPath.row]floatValue];
+        [cell setDownloadProgress:progress WithStatus:Example3CelldownloadStatusWaiting];
+
+
+    }
+    
+    
 }
 
 

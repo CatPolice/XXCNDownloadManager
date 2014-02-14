@@ -95,15 +95,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E3AA44CE18AB450600C08965 = {
+		E3787CE018ADEF570071C3D6 /* XXCNDownloadManager */ = {
 			isa = PBXGroup;
 			children = (
 				E3AA451018AB592800C08965 /* XXCNDownloadManager.h */,
 				E3AA451118AB592800C08965 /* XXCNDownloadManager.m */,
 				E3AA450918AB469900C08965 /* XXCNFileDownloader.h */,
 				E3AA450A18AB469900C08965 /* XXCNFileDownloader.m */,
+			);
+			name = XXCNDownloadManager;
+			sourceTree = "<group>";
+		};
+		E3AA44CE18AB450600C08965 = {
+			isa = PBXGroup;
+			children = (
+				E3787CE018ADEF570071C3D6 /* XXCNDownloadManager */,
 				E3AA44E018AB450700C08965 /* XXCNDownLoadManager */,
-				E3DF938318AB6D7100ED08FC /* Example3 */,
 				E3AA44F918AB450700C08965 /* XXCNDownLoadManagerTests */,
 				E3AA44D918AB450700C08965 /* Frameworks */,
 				E3AA44D818AB450700C08965 /* Products */,
@@ -135,12 +142,13 @@
 			children = (
 				E3AA44E918AB450700C08965 /* SogouWallpaperAppDelegate.h */,
 				E3AA44EA18AB450700C08965 /* SogouWallpaperAppDelegate.m */,
-				E3AA44EC18AB450700C08965 /* Images.xcassets */,
-				E3AA44E118AB450700C08965 /* Supporting Files */,
 				E3AA450D18AB4D2B00C08965 /* Example1ViewController.h */,
 				E3AA450E18AB4D2B00C08965 /* Example1ViewController.m */,
 				E3DF937D18AB656100ED08FC /* Example2ViewController.h */,
 				E3DF937E18AB656100ED08FC /* Example2ViewController.m */,
+				E3DF938318AB6D7100ED08FC /* Example3 */,
+				E3AA44E118AB450700C08965 /* Supporting Files */,
+				E3AA44EC18AB450700C08965 /* Images.xcassets */,
 			);
 			path = XXCNDownLoadManager;
 			sourceTree = "<group>";
@@ -185,7 +193,6 @@
 				E3DF938518AB6D9A00ED08FC /* Example3Cell.m */,
 			);
 			name = Example3;
-			path = XXCNDownLoadManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

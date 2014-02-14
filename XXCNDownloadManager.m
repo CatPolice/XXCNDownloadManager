@@ -12,7 +12,12 @@
 @implementation XXCNDownloadManager
 {
     NSOperationQueue *_downloadQueue;
+    
+    //所有列队中的线程
     NSMutableDictionary *_operationDictionary;
+    
+    //所有失败和暂停的任务线程中已经下载到的数据量，用于断点续传
+    NSMutableDictionary *_receviedBytesArray;
 }
 
 - (id)init
@@ -24,6 +29,7 @@
         [_downloadQueue setMaxConcurrentOperationCount:2];
         
         _operationDictionary=[[NSMutableDictionary alloc]init];
+        _receviedBytesArray=[[NSMutableDictionary alloc]init];
     }
     return self;
 }
@@ -44,18 +50,25 @@
     return [_downloadQueue operationCount];
 }
 
--(XXCNFileDownloader *)downloadURLStr:(NSString *)urlStr withTag:(NSString *)tag withDelegate:(id<XXCNFileDownloaderDelegate>)delegate
+//开始一个下载任务，是否为断点续传根据已经接收到的数据length。  0是新的下载，否则是一个断点续传
+-(void)downloadURLStr:(NSString *)urlStr withTag:(NSString *)tag withDelegate:(id<XXCNFileDownloaderDelegate>)delegate
 {
+    
     XXCNFileDownloader *fileDownloader=[[XXCNFileDownloader alloc]initWidthURLStr:urlStr];
     fileDownloader.delegate=delegate;
     fileDownloader.tag=tag;
     
+    uint64_t receivedLength=0.0;
+    if ([_receviedBytesArray valueForKey:tag]!=nil) {
+        receivedLength=[[_receviedBytesArray valueForKey:tag] longLongValue];
+    }
+    
+    fileDownloader.receivedDataLength=receivedLength;
+    
+    
     [_operationDictionary setObject:fileDownloader forKey:tag];
     
     [_downloadQueue addOperation:fileDownloader];
-    
-    return fileDownloader;
-    
 }
 
 
@@ -63,8 +76,9 @@
 -(void)stopDownloadOperationWithTag:(NSString *)tag
 {
     XXCNFileDownloader *fileDownloader=(XXCNFileDownloader *)[_operationDictionary objectForKey:tag];
-    
+    [_receviedBytesArray setValue:[NSNumber numberWithLongLong:fileDownloader.receivedDataLength] forKey:tag];
     [fileDownloader cancelOperation];
+    
    
 }
 
@@ -79,5 +93,6 @@
     
     NSLog(@"列队中的下载任务数1:%i",taskNum);
 }
+
 
 @end

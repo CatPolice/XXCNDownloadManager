@@ -57,7 +57,7 @@ static NSString *CellIdentifier = @"";
     cell.titleLabel.text=_nameArray[indexPath.row];
     cell.tag=indexPath.row;
     float progressValue= [[_progressArray objectAtIndex:indexPath.row] floatValue];
-    int downloadStauts=[[_statusArray objectAtIndex:indexPath.row] integerValue];
+    int downloadStauts=[[_statusArray objectAtIndex:indexPath.row] intValue];
     [cell setDownloadProgress:progressValue WithStatus:downloadStauts];
 
 

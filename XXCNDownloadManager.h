@@ -15,7 +15,7 @@
 
 -(NSInteger)currentOperationCount;
 
--(XXCNFileDownloader *)downloadURLStr:(NSString *)urlStr withTag:(NSString *)tag withDelegate:(id<XXCNFileDownloaderDelegate>)delegate;
+-(void)downloadURLStr:(NSString *)urlStr withTag:(NSString *)tag withDelegate:(id<XXCNFileDownloaderDelegate>)delegate;
 
 -(void)stopDownloadOperationWithTag:(NSString *)tag;
 

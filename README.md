@@ -9,6 +9,4 @@ XXCNDownloadManager
 2:在uitableview中显示下载进度(等待，加载中百分比，下载完毕，暂停下载)
 3:单击 “正在下载” 和 “等待中” 的UITableCell，暂停下载操作
 
-
-
- ![](https://github.com/xiaoxiaocainiao/XXCNDownloadManager/blob/master/preview/1.png)
+![alt tag](https://raw.github.com/xiaoxiaocainiao/XXCNDownloadManager/master/preview/2.jpg)
